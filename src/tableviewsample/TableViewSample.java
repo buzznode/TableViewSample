@@ -50,24 +50,22 @@ public class TableViewSample extends Application {
  
         table.setEditable(true);
  
-        TableColumn<CountryModel, Integer> countryIdCol = 
-            new TableColumn<>("Country Id");
+        TableColumn<CountryModel, Integer> countryIdCol = new TableColumn<>("Country Id");
         countryIdCol.setMinWidth(80);
-        countryIdCol.setCellValueFactory(
-            new PropertyValueFactory<>("countryId"));
+        countryIdCol.setCellValueFactory(new PropertyValueFactory<>("countryId"));
         
-        TableColumn<CountryModel, String> countryCol = 
-            new TableColumn<>("Country");
+        TableColumn<CountryModel, String> countryCol = new TableColumn<>("Country");
         countryCol.setMinWidth(120);
-        countryCol.setCellValueFactory(
-            new PropertyValueFactory<>("country"));
-       countryCol.setCellFactory(TextFieldTableCell.<CountryModel>forTableColumn());
-       countryCol.setOnEditCommit(
+        countryCol.setCellValueFactory(new PropertyValueFactory<>("country"));
+        
+        countryCol.setCellFactory(TextFieldTableCell.<CountryModel>forTableColumn());
+        countryCol.setOnEditCommit(
             (CellEditEvent<CountryModel, String> t) -> {
                 ((CountryModel) t.getTableView().getItems().get(
                         t.getTablePosition().getRow())
                         ).setCountry(t.getNewValue());
         });
+        
  
         TableColumn<CountryModel, String> createDateCol = 
             new TableColumn<>("Create Date");
